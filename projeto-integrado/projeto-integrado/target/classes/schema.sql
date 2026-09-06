@@ -1,0 +1,9 @@
+CREATE TABLE IF NOT EXISTS musicas(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(250) NOT NULL,
+    apelido VARCHAR(120) UNIQUE,
+    musica VARCHAR(250) NOT NULL,
+    autor VARCHAR(200) NOT NULL,
+    album VARCHAR(150) NOT NULL,
+    anoLanc CHAR(4) NOT NULL
+    );
