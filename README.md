@@ -8,13 +8,13 @@ Portanto, três verbos aparecem neste projeto: GET, POST e DELETE.
 
 ## Tecnologias Utilizadas
 
-*Front-End:*React, Vite, Node.js/npm
+*Front-End:* React, Vite, Node.js/npm;
 
-*Back-End:*Java 21, Spring Boot, Spring JDBC
+*Back-End:* Java 21, Spring Boot, Spring JDBC;
 
-*Banco de Dados:* MySQL
+*Banco de Dados:* MySQL;
 
-*Comunicação:* API REST
+*Comunicação:* API REST.
 
 ## Banco de Dados
 
@@ -54,9 +54,9 @@ spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 
 Para executar o projeto, são necessários algumas etapas:
 
-* em API-Rest, deve-se fazer o seguinte caminho: `src/main/java/school/sptech/projetointegrado/ProjetoIntegradoApplication.java` e clicar no botão de execução (play verde), ou executar o comando **mvn spring-boot:run** O projeto deve abrir em "http://localhost:8080".
+* em API-Rest, deve-se fazer o seguinte caminho: `src/main/java/school/sptech/projetointegrado/ProjetoIntegradoApplication.java` e clicar no botão de execução (play verde), ou executar o comando **mvn spring-boot:run** O projeto deve abrir em "http://localhost:8080";
 
-* simultaneamente, em React, deve-se rodar o comando **npm install** e, em seguida, o comando **npm run dev**. O front-end deve abrir em "http://localhost:5173"
+* simultaneamente, em React, deve-se rodar o comando **npm install** e, em seguida, o comando **npm run dev**. O front-end deve abrir em "http://localhost:5173".
 
 ## Exemplos de Requisições
 
