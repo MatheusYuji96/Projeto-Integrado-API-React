@@ -9,8 +9,11 @@ Portanto, três verbos aparecem neste projeto: GET, POST e DELETE.
 ## Tecnologias Utilizadas
 
 *Front-End:*React, Vite, Node.js/npm
+
 *Back-End:*Java 21, Spring Boot, Spring JDBC
+
 *Banco de Dados:* MySQL
+
 *Comunicação:* API REST
 
 ## Banco de Dados
