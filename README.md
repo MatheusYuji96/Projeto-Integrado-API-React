@@ -61,6 +61,8 @@ Como citado anteriormente, são três os verbos utilizados nesta aplicação: GE
 
 ### GET/musicas/listagem
     * Response Body (200 OK):
+
+```JSON
 [
     {
     "id": 1,
@@ -72,10 +74,12 @@ Como citado anteriormente, são três os verbos utilizados nesta aplicação: GE
     "anoLanc": 1986
     }
 ]
+```
 
 ### POST/musicas/cadastro
     * Request Body (JSON):
 
+```JSON
 {
   "nome": "José da Silva",
   "apelido": "zezé",
@@ -84,8 +88,11 @@ Como citado anteriormente, são três os verbos utilizados nesta aplicação: GE
   "album": "Slippery When Wet",
   "anoLanc": 1986
 }
+```
 
     * Response Body (201 Created):
+
+```JSON
 {
   "id": 1,
   "nome": "José da Silva",
@@ -95,6 +102,7 @@ Como citado anteriormente, são três os verbos utilizados nesta aplicação: GE
   "album": "Slippery When Wet",
   "anoLanc": 1986
 }
+```
 
 ### DELETE/musicas/exclusao/{id}
 
