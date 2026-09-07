@@ -52,8 +52,7 @@ export function ApagarCadastro() {
                     <button onClick={deletarMusica}>Excluir</button>
                     <br />
                     <br />
-                    <p>{sucesso && "Exclusão feita com sucesso"}</p>
-                    <p>{problema && "Cadastro não encontrado"}</p>
+                    <p><b>{sucesso && "Exclusão feita com sucesso"}</b> <b>{problema && "Cadastro não encontrado"}</b></p>
                 </div>
             </div>
         </div>

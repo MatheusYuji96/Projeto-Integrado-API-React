@@ -11,6 +11,9 @@ export function Dados() {
     const redirectApagarPage = () => { navigate("/ApagarCadastro") }
 
     const [sucesso, setSucesso] = useState(false)
+    const [anoIrreal, setAnoIrreal] = useState(false)
+    const [dadosInvalidos, setDadosInvalidos] = useState(false)
+    const [dadosExistentes, setDadosExistentes] = useState(false)
 
     const [dadosDigitados, setDadosDigitados] = useState([
         {
@@ -29,10 +32,6 @@ export function Dados() {
         setDadosDigitados(copiaDadosDigitados)
     }
 
-    /*     function reiniciar(){
-            setSucesso(false)
-        } */
-
     function cadastrarMusica() {
         axios.post("http://localhost:8080/musicas/cadastro",
             dadosDigitados
@@ -42,12 +41,28 @@ export function Dados() {
                 console.log(resposta.data);
                 console.log(resposta.status);
                 setSucesso(true)
+                setAnoIrreal(false)
+                setDadosInvalidos(false)
+                setDadosExistentes(false)
             })
             .catch(erro => {
                 console.error("Erro ao cadastrar.");
                 console.error(erro);
                 console.error(erro.status);
                 setSucesso(false)
+                if (erro.status == 400){
+                    setAnoIrreal(false)
+                    setDadosExistentes(false)
+                    setDadosInvalidos(true)
+                } else if (erro.status == 422){
+                    setDadosInvalidos(false)
+                    setDadosExistentes(false)
+                    setAnoIrreal(true)
+                } else if (erro.status == 409){
+                    setAnoIrreal(false)
+                    setDadosInvalidos(false)
+                    setDadosExistentes(true)
+                }
             })
     }
     return (
@@ -61,17 +76,17 @@ export function Dados() {
             </div>
             <div className={styles.envoltorio}>
                 <div className={styles.infos}>
-                    <p>Nome: <input type="text" onChange={(evento) => salvarDadosDigitados(evento, "nome")} /></p>
-                    <p>Apelido: <input type="text" onChange={(evento) => salvarDadosDigitados(evento, "apelido")} /></p>
-                    <p>Música Favorita: <input type="text" onChange={(evento) => salvarDadosDigitados(evento, "musica")} /></p>
-                    <p>Artista/Banda/Grupo: <input type="text" onChange={(evento) => salvarDadosDigitados(evento, "autor")} /></p>
-                    <p>Álbum: <input type="text" onChange={(evento) => salvarDadosDigitados(evento, "album")} /></p>
-                    <p>Ano de Lançamento: <input type="number" onChange={(evento) => salvarDadosDigitados(evento, "anoLanc")} /></p>
+                    <p><b>Nome:</b> <input type="text" onChange={(evento) => salvarDadosDigitados(evento, "nome")} /></p>
+                    <p><b>Apelido:</b> <input type="text" onChange={(evento) => salvarDadosDigitados(evento, "apelido")} /></p>
+                    <p><b>Música Favorita:</b> <input type="text" onChange={(evento) => salvarDadosDigitados(evento, "musica")} /></p>
+                    <p><b>Artista/Banda/Grupo:</b> <input type="text" onChange={(evento) => salvarDadosDigitados(evento, "autor")} /></p>
+                    <p><b>Álbum:</b> <input type="text" onChange={(evento) => salvarDadosDigitados(evento, "album")} /></p>
+                    <p><b>Ano de Lançamento:</b> <input type="number" onChange={(evento) => salvarDadosDigitados(evento, "anoLanc")} /></p>
                     <br />
                     <button onClick={cadastrarMusica}>Cadastrar</button>
                     <br />
                     <br />
-                    <p>{sucesso && "Cadastro feito com sucesso"}</p>
+                    <p><b>{sucesso && "Cadastro feito com sucesso"}</b> <b>{dadosInvalidos && "Insira dados válidos nos campos"}</b> <b>{anoIrreal && "Escolha um ano válido entre 1920 e 2026"} <b>{dadosExistentes && "Cadastro similar já existe"}</b></b></p>
                 </div>
             </div>
         </div>

@@ -74,9 +74,11 @@ public class MusicasController {
 
         if (musica.getAnoLanc() <= 0){
             return ResponseEntity.status(400).build();
+        } else if (musica.getAnoLanc() > 0 && musica.getAnoLanc() < 1920 || musica.getAnoLanc() >= 2027){
+            return ResponseEntity.status(422).build();
         }
 
-        if (existePorMusicaAutores(musica.getMusica(), musica.getAutor())){
+        if (existePorCaseInsensitive(musica.getNome(), musica.getApelido(), musica.getMusica(), musica.getAutor(), musica.getAlbum(), musica.getAnoLanc())){
             return ResponseEntity.status(409).build();
         }
 
@@ -117,13 +119,15 @@ public class MusicasController {
 
         if (musica.getAnoLanc() <= 0){
             return ResponseEntity.status(400).build();
+        } else if (musica.getAnoLanc() > 0 && musica.getAnoLanc() < 1920 || musica.getAnoLanc() >= 2027){
+            return ResponseEntity.status(422).build();
         }
 
         if(!existePorId(id)){
             return ResponseEntity.status(404).build();
         }
 
-        if (existePorMusicaAutores(musica.getNome(),musica.getAutor())){
+        if (existePorCaseInsensitive(musica.getNome(), musica.getApelido(), musica.getMusica(), musica.getAutor(), musica.getAlbum(), musica.getAnoLanc())){
             return ResponseEntity.status(409).build();
         }
 
@@ -158,9 +162,10 @@ public class MusicasController {
         return quantidade != null && quantidade > 0;
     }
 
-    private boolean existePorMusicaAutores(String musica, String autor){
-        String sql = "SELECT COUNT(*) FROM musicas WHERE musica = ? AND autor = ?";
-        Integer contador = template.queryForObject(sql, Integer.class, musica, autor);
+    private boolean existePorCaseInsensitive(String nome, String apelido, String musica, String autor, String album
+    , Integer anoLanc){
+        String sql = "SELECT COUNT(*) FROM musicas WHERE LOWER (nome) = LOWER (?) AND LOWER (apelido) = LOWER (?) AND LOWER (musica) = LOWER (?) AND LOWER (autor) = LOWER (?) AND LOWER (album) = LOWER (?) AND anoLanc = ?";
+        Integer contador = template.queryForObject(sql, Integer.class, nome, apelido, musica, autor, album, anoLanc);
         return contador != null && contador > 0;
     }
 
