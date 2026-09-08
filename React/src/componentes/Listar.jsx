@@ -43,7 +43,6 @@ export function Listar() {
                     <br />
                     {musicas.map(musica => (
                         <div>
-                            <br />
                             <p><b>{musica.id}º Cadastro</b></p>
                             <p><b>Nome:</b> {musica.nome}</p>
                             <p><b>Apelido:</b> {musica?.apelido}</p>

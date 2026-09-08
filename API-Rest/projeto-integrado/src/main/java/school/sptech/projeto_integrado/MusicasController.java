@@ -102,48 +102,6 @@ public class MusicasController {
         return ResponseEntity.status(201).body(musica);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Musicas> atualizarMusica(@RequestBody Musicas musica, @PathVariable int id){
-
-        if (musica.getNome() == null || musica.getNome().isBlank()){
-            return ResponseEntity.status(400).build();
-        }
-
-        if (musica.getAutor() == null || musica.getAutor().isBlank()){
-            return ResponseEntity.status(400).build();
-        }
-
-        if (musica.getAlbum() == null || musica.getAlbum().isBlank()){
-            return ResponseEntity.status(400).build();
-        }
-
-        if (musica.getAnoLanc() <= 0){
-            return ResponseEntity.status(400).build();
-        } else if (musica.getAnoLanc() > 0 && musica.getAnoLanc() < 1920 || musica.getAnoLanc() >= 2027){
-            return ResponseEntity.status(422).build();
-        }
-
-        if(!existePorId(id)){
-            return ResponseEntity.status(404).build();
-        }
-
-        if (existePorCaseInsensitive(musica.getNome(), musica.getApelido(), musica.getMusica(), musica.getAutor(), musica.getAlbum(), musica.getAnoLanc())){
-            return ResponseEntity.status(409).build();
-        }
-
-        if (!existePorId(id)){
-            return ResponseEntity.status(404).build();
-        }
-
-        String sql = "UPDATE musicas SET nome = ?, apelido = ?, musica = ?, autor = ?, album = ?, anoLanc = ? WHERE id = ?";
-
-        template.update(sql, musica.getNome(), musica.getApelido(), musica.getMusica(), musica.getAutor(), musica.getAutor(), musica.getAnoLanc(), id);
-
-        musica.setId(id);
-
-        return ResponseEntity.status(200).body(musica);
-    }
-
     @DeleteMapping("/exclusao/{id}")
     public ResponseEntity<Void> deletarRegistro(@PathVariable int id){
 
@@ -168,11 +126,4 @@ public class MusicasController {
         Integer contador = template.queryForObject(sql, Integer.class, nome, apelido, musica, autor, album, anoLanc);
         return contador != null && contador > 0;
     }
-
-    private boolean existePorNomeArtistaCaseInsensitive(String nome,String artista){
-        String sql = "SELECT COUNT(*) FROM musica WHERE LOWER (nome) = LOWER (?) AND LOWER (artista) = LOWER (?)";
-        Integer contador = template.queryForObject(sql, Integer.class, nome, artista);
-        return contador != null && contador > 0;
-    }
-
 }
