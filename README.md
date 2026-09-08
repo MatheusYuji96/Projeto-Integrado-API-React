@@ -79,6 +79,23 @@ Como citado anteriormente, são três os verbos utilizados nesta aplicação: GE
 ]
 ```
 
+### GET/musicas/listagem/${id}
+    * Response Body (200 OK):
+
+```JSON
+[
+    {
+    "id": 4,
+    "nome": "Camila",
+    "apelido": "miyu",
+    "musica": "Usseewa",
+    "autor": "Ado",
+    "album": "Kyogen",
+    "anoLanc": 2022
+    }
+]
+```
+
 ### POST/musicas/cadastro
     * Request Body (JSON):
 
