@@ -1,8 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
-import { Listar } from "./componentes/Listar";
 import { Cadastro } from "./pagina/cadastro";
 import { Pesquisa } from "./pagina/Pesquisa";
 import { Exclusao } from "./pagina/Exclusao";
+import { PesquisaId } from "./pagina/PesquisaId"
 
 export const routes = createBrowserRouter([
     {
@@ -13,6 +13,10 @@ export const routes = createBrowserRouter([
     {
         path: "/Listar",
         element: <Pesquisa />
+    },
+    {
+        path: "ListarId",
+        element: <PesquisaId />
     },
     {
         path: "/ApagarCadastro",

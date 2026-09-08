@@ -7,8 +7,9 @@ export function Dados() {
 
     const navigate = useNavigate();
 
-    const redirectListPage = () => { navigate("/Listar") }
-    const redirectApagarPage = () => { navigate("/ApagarCadastro") }
+    const redirectListPage = () => { navigate("/Listar") };
+    const redirectApagarPage = () => { navigate("/ApagarCadastro") };
+    const redirectListarIdPage = () => { navigate("/ListarId") }
 
     const [sucesso, setSucesso] = useState(false)
     const [anoIrreal, setAnoIrreal] = useState(false)
@@ -50,15 +51,15 @@ export function Dados() {
                 console.error(erro);
                 console.error(erro.status);
                 setSucesso(false)
-                if (erro.status == 400){
+                if (erro.status == 400) {
                     setAnoIrreal(false)
                     setDadosExistentes(false)
                     setDadosInvalidos(true)
-                } else if (erro.status == 422){
+                } else if (erro.status == 422) {
                     setDadosInvalidos(false)
                     setDadosExistentes(false)
                     setAnoIrreal(true)
-                } else if (erro.status == 409){
+                } else if (erro.status == 409) {
                     setAnoIrreal(false)
                     setDadosInvalidos(false)
                     setDadosExistentes(true)
@@ -71,6 +72,7 @@ export function Dados() {
                 <h2>Okiniiri no Ongaku</h2>
                 <div className={styles.botoes}>
                     <button onClick={redirectListPage}>Listar Dados</button>
+                    <button onClick={redirectListarIdPage}>Buscar Cadastro</button>
                     <button onClick={redirectApagarPage}>Apagar Cadastro</button>
                 </div>
             </div>

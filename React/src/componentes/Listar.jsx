@@ -8,15 +8,16 @@ export function Listar() {
 
     const navigate = useNavigate();
 
-    const redirectPage = () => { navigate("/") }
-    const redirectApagarPage = () => { navigate("/ApagarCadastro") }
+    const redirectPage = () => { navigate("/") };
+    const redirectApagarPage = () => { navigate("/ApagarCadastro") };
+    const redirectListarIdPage = () => { navigate("/ListarId") }
 
     const [musicas, setMusicas] = useState([])
-    const [vazio, setVazio] = useState(false)
 
     function buscar() {
         axios.get("http://localhost:8080/musicas/listagem")
             .then(resposta => {
+                console.log(resposta.status)
                 setMusicas(resposta.data)
             })
             .catch((erro) => {
@@ -31,6 +32,7 @@ export function Listar() {
                 <h2>Okiniiri no Ongaku</h2>
                 <div className={styles.botoes}>
                     <button onClick={redirectPage}>Cadastrar</button>
+                    <button onClick={redirectListarIdPage}>Buscar Cadastro</button>
                     <button onClick={redirectApagarPage}>Apagar Cadastro</button>
                 </div>
             </div>
@@ -39,20 +41,18 @@ export function Listar() {
                     <button onClick={buscar}>Buscar Músicas</button>
                     <br />
                     <br />
-                    {vazio ? "Não há cadastros registrados" :
-                        (musicas.map(musica => (
-                            <div>
-                                <br />
-                                <p><b>{musica.id}º Cadastro</b></p>
-                                <p><b>Nome:</b> {musica.nome}</p>
-                                <p><b>Apelido:</b> {musica?.apelido}</p>
-                                <p><b>Música favorita:</b> {musica.musica}</p>
-                                <p><b>Artista/Banda/Grupo:</b> {musica.autor}</p>
-                                <p><b>Álbum:</b> {musica.album}</p>
-                                <p><b>Ano de Lançamento da Música:</b> {musica.anoLanc} </p>
-                            </div>
-                        ))
-                        )
+                    {musicas.map(musica => (
+                        <div>
+                            <br />
+                            <p><b>{musica.id}º Cadastro</b></p>
+                            <p><b>Nome:</b> {musica.nome}</p>
+                            <p><b>Apelido:</b> {musica?.apelido}</p>
+                            <p><b>Música favorita:</b> {musica.musica}</p>
+                            <p><b>Artista/Banda/Grupo:</b> {musica.autor}</p>
+                            <p><b>Álbum:</b> {musica.album}</p>
+                            <p><b>Ano de Lançamento da Música:</b> {musica.anoLanc} </p>
+                        </div>
+                    ))
                     }
                 </div>
             </div>

@@ -7,8 +7,9 @@ export function ApagarCadastro() {
 
     const navigate = useNavigate();
 
-    const redirectListPage = () => { navigate("/Listar") }
-    const redirectPage = () => { navigate("/") }
+    const redirectPage = () => { navigate("/") };
+    const redirectListPage = () => { navigate("/Listar") };
+    const redirectListarIdPage = () => { navigate("/ListarId") }
 
     const [id, setId] = useState("");
     const [sucesso, setSucesso] = useState(false);
@@ -30,7 +31,7 @@ export function ApagarCadastro() {
             console.error("Erro ao excluir");
             console.error(erro);
             console.error(erro.status);
-            if (erro.status == 404){
+            if (erro.status == 404) {
                 setProblema(true)
             }
             setSucesso(false)
@@ -42,8 +43,9 @@ export function ApagarCadastro() {
             <div className={styles.header}>
                 <h2>Okiniiri no Ongaku</h2>
                 <div className={styles.botoes}>
-                    <button onClick={redirectListPage}>Listar Dados</button>
                     <button onClick={redirectPage}>Cadastrar</button>
+                    <button onClick={redirectListPage}>Listar Dados</button>
+                    <button onClick={redirectListarIdPage}>Buscar Cadastro</button>
                 </div>
             </div>
             <div className={styles.envoltorio}>
