@@ -79,7 +79,7 @@ Como citado anteriormente, são três os verbos utilizados nesta aplicação: GE
 ]
 ```
 
-### GET/musicas/listagem/${id}
+### GET/musicas/listagem/{id}
     * Response Body (200 OK):
 
 ```JSON
